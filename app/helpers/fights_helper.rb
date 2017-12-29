@@ -1,2 +1,0 @@
-module FightsHelper
-end
