@@ -5,3 +5,6 @@
 /public/packs
 /public/packs-test
 /node_modules
+db/.DS_Store
+db/migrate/.DS_Store
+.DS_Store
