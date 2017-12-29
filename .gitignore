@@ -10,3 +10,4 @@ db/migrate/.DS_Store
 .DS_Store
 .DS_Store
 *.gz
+tmp/cache/webpacker/.last-compilation-digest-development
