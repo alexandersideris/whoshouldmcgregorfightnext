@@ -66,7 +66,7 @@ class Fights extends React.Component {
     var superfights = this.state.superfights
 
     //console.log(fights)
-    var title = 'Popular matchups.'
+    var title = 'Who Should McGregor Fight Next?'
     if (division == 'None' && superfights!='true'){
       title = 'Popular '+fighters.find(function(e){ return e.id == the_fighter }).name+' matchups.'
     }else if (division != 'Popular' && superfights!='true'){

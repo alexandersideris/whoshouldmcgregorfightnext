@@ -147,58 +147,87 @@ def createTheSuperFight(champion_one, champion_two)
 
 end
 
+def createTheMcGregorFights(division_text, division)
+	mcgregor = Fighter.where(name: 'Conor McGregor').first
+
+	$i = 0
+	while $i < 8  do
+		f = Fight.where("fighter_one_id = "+mcgregor.id.to_s + " and fighter_two_id = " + division[$i].id.to_s + "or fighter_one_id = "+division[$i].id.to_s + "and fighter_two_id = " + mcgregor.id.to_s).first
+		#puts 'f: ' + f.to_s
+		if f != nil
+			f.fighter_one_id = mcgregor.id
+			f.fighter_two_id = division[$i].id
+			f.division = division_text
+			f.save
+		else
+			if(mcgregor.id != division[$i].id)
+				Fight.create(division: division_text, upvotes: 0, fighter_one_id: mcgregor.id, fighter_two_id: division[$i].id)					 
+			end	
+		end
+   		$i +=1
+	end
+
+end
+
 def createFights
 	puts 'Flyweights:' + $flyweights.to_s
-	createTheFights('Flyweight', $flyweights)
-	createTheSuperFight($flyweights[0], $bantamweights[0])
+	#createTheFights('Flyweight', $flyweights)
+	#createTheSuperFight($flyweights[0], $bantamweights[0])
 
 	puts 'Bantamweights:' + $bantamweights.to_s
-	createTheFights('Bantamweight', $bantamweights)
-	createTheSuperFight($bantamweights[0], $featherweights[0])
+	#createTheFights('Bantamweight', $bantamweights)
+	#createTheSuperFight($bantamweights[0], $featherweights[0])
 
 
 	puts 'Featherweights:' + $featherweights.to_s
-	createTheFights('Featherweight', $featherweights)
-	createTheSuperFight($featherweights[0], $lightweights[0])
+	#createTheFights('Featherweight', $featherweights)
+	#createTheSuperFight($featherweights[0], $lightweights[0])
 
 
 	puts 'Lightweights:' + $lightweights.to_s
-	createTheFights('Lightweight', $lightweights)
-	createTheSuperFight($lightweights[0], $welterweights[0])
+	#createTheFights('Lightweight', $lightweights)
+	#createTheSuperFight($lightweights[0], $welterweights[0])
 
 	puts 'Welterweights:' + $welterweights.to_s
-	createTheFights('Welterweight', $welterweights)
-	createTheSuperFight($welterweights[0], $middleweights[0])
+	#createTheFights('Welterweight', $welterweights)
+	#createTheSuperFight($welterweights[0], $middleweights[0])
 
 	puts 'Middleweights:' + $middleweights.to_s
-	createTheFights('Middleweight', $middleweights)
-	createTheSuperFight($middleweights[0], $lightheavyweights[0])
+	#createTheFights('Middleweight', $middleweights)
+	#createTheSuperFight($middleweights[0], $lightheavyweights[0])
 
 	puts 'Light Heavyweights:' + $lightheavyweights.to_s
-	createTheFights('Light Heavyweight', $lightheavyweights)
-	createTheSuperFight($lightheavyweights[0], $heavyweights[0])
+	#createTheFights('Light Heavyweight', $lightheavyweights)
+	#createTheSuperFight($lightheavyweights[0], $heavyweights[0])
 
 	puts 'Heavyweights:' + $heavyweights.to_s
-	createTheFights('Heavyweight', $heavyweights)
+	#createTheFights('Heavyweight', $heavyweights)#
 
 	# WOMEN
 
 	puts 'Women Strawweights:' + $womenstrawweights.to_s
-	createTheFights("Women's Strawweight", $womenstrawweights)
-	createTheSuperFight($womenstrawweights[0], $womenflyweights[0])
+	#createTheFights("Women's Strawweight", $womenstrawweights)
+	#createTheSuperFight($womenstrawweights[0], $womenflyweights[0])
 
 
 	puts 'Women Flyweights:' + $womenflyweights.to_s
-	createTheFights("Women's Flyweight", $womenflyweights)
-	createTheSuperFight($womenflyweights[0], $womenbantamweights[0])
+	#createTheFights("Women's Flyweight", $womenflyweights)
+	#createTheSuperFight($womenflyweights[0], $womenbantamweights[0])
 
 
 	puts "Women's Bantamweights:" + $womenbantamweights.to_s
-	createTheFights("Women's Bantamweight", $womenbantamweights)
+	#createTheFights("Women's Bantamweight", $womenbantamweights)#
 
 	puts "Women's Featherweights:" + $womenfeatherweights.to_s
 		
+	puts "Creating the McGregor Fights at Featherweight"
+	createTheMcGregorFights("Featherweight", $featherweights)
 
+	puts "Creating the McGregor Fights at Lightweight"
+	createTheMcGregorFights("Lightweight", $lightweights)
+
+	puts "Creating the McGregor Fights at Welterweight"
+	createTheMcGregorFights("Welterweight", $welterweights)
 
 end
 
@@ -259,6 +288,7 @@ divisions.each{|division|
 
 }
 createFights()
+
 
 # Now check the fighters where is_updated=false. That means they are no longer ranked in the top 15. Delete their fights and delete them.
 
