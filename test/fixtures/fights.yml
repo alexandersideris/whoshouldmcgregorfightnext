@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fighter_one_id: 1
+  fighter_two_id: 1
+  upvotes: 1
+
+two:
+  fighter_one_id: 1
+  fighter_two_id: 1
+  upvotes: 1

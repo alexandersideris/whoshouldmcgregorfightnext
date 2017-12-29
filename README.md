@@ -1,2 +1,2 @@
-# whoshouldmcgregorfightnext
-Vote for the fight you want to see McGregor in next.
+# mmamatchups
+A crowdsourcing mma matchups website

@@ -1,0 +1,2 @@
+module RankingsPageHelper
+end
