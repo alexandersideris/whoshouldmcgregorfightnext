@@ -41,9 +41,18 @@ group :production do
 end
 
 # Use nokogiri for web scraping
-gem 'nokogiri'
+gem 'nokogiri', '~> 1.8.1'
 
+# To use React on the front end
 gem 'webpacker', '~> 3.0'
+
+# To use Google authentication
+gem "omniauth-google-oauth2", "~> 0.2.1"
+
+#To enable upvoting
+gem 'acts_as_votable', '~> 0.11.1'
+
+gem 'responders', '~> 2.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
