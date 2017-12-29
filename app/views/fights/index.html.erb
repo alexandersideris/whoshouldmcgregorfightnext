@@ -1,25 +1,16 @@
-<h1>Fights</h1>
-<p>Fighters...</p>
-<% @fighters.each do |fighter| %>
-  <img src=<%= fighter.img_url %> ><br>
-  <%= fighter.id %><br>
-	<%= fighter.name %><br>
-  <%= fighter.rank %><br>
-  <%= fighter.fight_record %><br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
+<%= javascript_pack_tag 'fights',props: { division: 'popular', fights: @fights} %>
+
+<%= content_tag :div,
+  id: "fights_data",
+  data: @fights.to_json do %>
 <% end %>
 
-<% @fights.each do |fight| %>
-	<%= Fighter.find(fight.fighter_one_id).name %> <%= Fighter.find(fight.fighter_one_id).rank %><br>
-  <%= Fighter.find(fight.fighter_two_id).name %> <%= Fighter.find(fight.fighter_two_id).rank %><br>
-  Upvotes: <%= fight.upvotes %><br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
+<%= content_tag :div,
+  id: "fighters_data",
+  data: @fighters.to_json do %>
+<% end %>
+
+<%= content_tag :div,
+  id: "current_user",
+  data: current_user.to_json do %>
 <% end %>
