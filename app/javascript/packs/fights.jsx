@@ -128,7 +128,7 @@ class Fights extends React.Component {
               </div>
 
             </div>
-            <div style={{backgroundColor: '#333333', position: 'fixed', bottom: 0, right: 0, alignItems: 'center', paddingLeft: 20, paddingRight: 20, paddingTop:20, paddingBottom: 20 }} >
+            <div style={{backgroundColor: '#333333', position: 'fixed', bottom: 0, right: 0, alignItems: 'center', paddingLeft: 30, paddingRight: 30, paddingTop:30, paddingBottom: 30 }} >
               <a href="https://www.mmamatchups.net" style={{color: 'white', fontSize: 16, textAlign: 'center'}}>Made with <Glyphicon glyph='heart'/> by MMAmatchups.net</a>
             </div>
           </div>
@@ -215,7 +215,7 @@ class Fights extends React.Component {
               </div>
 
             </div>
-            <div style={{backgroundColor: '#333333', position: 'fixed', bottom: 0, right: 0, alignItems: 'center', paddingLeft: 20, paddingRight: 20, paddingTop:20, paddingBottom: 20 }} >
+            <div style={{backgroundColor: '#333333', position: 'fixed', bottom: 0, right: 0, alignItems: 'center', paddingLeft: 30, paddingRight: 30, paddingTop:30, paddingBottom: 30 }} >
               <a href="https://www.mmamatchups.net" style={{color: 'white', fontSize: 16, textAlign: 'center'}}>Made with <Glyphicon glyph='heart'/> by MMAmatchups.net</a>
             </div>
           </div>
