@@ -2,32 +2,46 @@
 <html>
 <head>
   <title>MMA matchups</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width" />
-
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
-
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css">
-
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag  '//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css' %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag  '//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js' %>
   <%= csrf_meta_tags %>
-
-  <% if Rails.env == "production"  %>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111441378-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-111441378-1');
-    </script>
-  <% end %>
-
 </head>
 <body>
+<nav class="navbar navbar-default navbar-static-top navbar-inverse">
+  <div class="container">
+    <ul class="nav navbar-nav">
+      <li class="active">
+        <a href="/"><span class="glyphicon glyphicon-home"></span> Home</a>
+      </li>
+
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-scale"></span> Divisions <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="https://devcenter.heroku.com/articles/getting-started-with-ruby">Flyweight</a></li>
+            <li><a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs">Bantamweight</a></li>
+            <li><a href="https://devcenter.heroku.com/articles/getting-started-with-php">Featherweight</a></li>
+            <li><a href="https://devcenter.heroku.com/articles/getting-started-with-python">Lightweight</a></li>
+            <li><a href="https://devcenter.heroku.com/articles/getting-started-with-java">Welterweight</a></li>
+            <li><a href="https://devcenter.heroku.com/articles/getting-started-with-go">Middleweight</a></li>
+            <li><a href="https://devcenter.heroku.com/articles/getting-started-with-clojure">Light heavyweight</a></li>
+            <li><a href="https://devcenter.heroku.com/articles/getting-started-with-scala">Heavyweight</a></li>
+            <li class="divider"></li>
+            <li><a href="https://devcenter.heroku.com/articles/getting-started-with-heroku-and-connect-without-local-dev">Women's Strawweight</a></li>
+            <li><a href="https://devcenter.heroku.com/articles/getting-started-with-jruby">Women's Flyweight</a></li>
+            <li><a href="https://devcenter.heroku.com/articles/getting-started-with-jruby">Women's Bantamweight</a></li>
+            <li><a href="https://devcenter.heroku.com/articles/getting-started-with-jruby">Women's Featherweight</a></li>
+          </ul>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="navbar-right">
+        <a href="https://devcenter.heroku.com"><span class="glyphicon glyphicon-book"></span> Sign In</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 
 <%= yield %>
 
