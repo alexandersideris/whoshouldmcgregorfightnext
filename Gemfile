@@ -43,6 +43,7 @@ end
 # Use nokogiri for web scraping
 gem 'nokogiri'
 
+gem 'webpacker', '~> 3.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

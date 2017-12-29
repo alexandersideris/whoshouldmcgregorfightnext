@@ -2,3 +2,6 @@
 *.cache
 *.log
 *.pid
+/public/packs
+/public/packs-test
+/node_modules
