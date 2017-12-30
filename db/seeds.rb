@@ -111,7 +111,7 @@ def createTheFights(division_text, division)
 	$i = 0
 	while $i < 16  do
 		j=1
-		while j < 9 do
+		while j < 11 do
 			if $i + j < 16
 				f = Fight.where("fighter_one_id = "+division[$i].id.to_s + " and fighter_two_id = " + division[$i+j].id.to_s + "or fighter_one_id = "+division[$i+j].id.to_s + "and fighter_two_id = " + division[$i].id.to_s).first
 				#puts 'f: ' + f.to_s
@@ -151,7 +151,7 @@ def createTheMcGregorFights(division_text, division)
 	mcgregor = Fighter.where(name: 'Conor McGregor').first
 
 	$i = 0
-	while $i < 8  do
+	while $i < division.length  do
 		f = Fight.where("fighter_one_id = "+mcgregor.id.to_s + " and fighter_two_id = " + division[$i].id.to_s + "or fighter_one_id = "+division[$i].id.to_s + "and fighter_two_id = " + mcgregor.id.to_s).first
 		#puts 'f: ' + f.to_s
 		if f != nil
