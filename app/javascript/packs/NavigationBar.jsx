@@ -96,7 +96,7 @@ export default class NavigationBar extends React.Component {
                   </NavDropdown>
                 </Nav>
                 <Nav>
-                  <MenuItem style={{fontSize: 40, paddingTop: 10, paddingBottom: 10}} eventKey={2} href="https://www.mmamatchups.net">View All Fighters</MenuItem>
+                  <MenuItem style={{fontSize: 40, paddingTop: 10, paddingBottom: 10}} eventKey={2} target="_blank" href="https://www.mmamatchups.net">View All Fighters</MenuItem>
                 </Nav>
                 <Nav pullRight>
                   <MenuItem style={{fontSize: 30, paddingBottom: 10}} eventKey={1} href="/auth/google_oauth2">   <Glyphicon glyph="log-in" />   Sign In With Google</MenuItem>
@@ -127,7 +127,7 @@ export default class NavigationBar extends React.Component {
                   </NavDropdown>
                 </Nav>
                 <Nav>
-                  <MenuItem style={{fontSize: 40, paddingTop: 10, paddingBottom: 10}} eventKey={2} href="https://www.mmamatchups.net">View All Fighters</MenuItem>
+                  <MenuItem style={{fontSize: 40, paddingTop: 10, paddingBottom: 10}} eventKey={2} target="_blank" href="https://www.mmamatchups.net">View All Fighters</MenuItem>
                 </Nav>
                 <Nav pullRight>
                   <MenuItem style={{fontSize: 30, paddingBottom: 10}} eventKey={2} href="signout"><Glyphicon glyph="log-out" />   Log Out</MenuItem>
@@ -160,7 +160,7 @@ export default class NavigationBar extends React.Component {
                   </NavDropdown>
                 </Nav>                
                 <Nav>
-                  <MenuItem eventKey={2} href="https://www.mmamatchups.net"><Glyphicon glyph="fire" />   View All Fighters</MenuItem>
+                  <MenuItem eventKey={2} target="_blank" href="https://www.mmamatchups.net"><Glyphicon glyph="fire" />   View All Fighters</MenuItem>
                 </Nav>
                 <Nav pullRight>
                   <MenuItem eventKey={1} href="/auth/google_oauth2"><Glyphicon glyph="log-in" />   Sign In With Google</MenuItem>
@@ -191,7 +191,7 @@ export default class NavigationBar extends React.Component {
                   </NavDropdown>
                 </Nav>
                 <Nav>
-                  <MenuItem eventKey={2} href="https://www.mmamatchups.net"><Glyphicon glyph="fire" />   View All Fighters</MenuItem>
+                  <MenuItem eventKey={2} target="_blank" href="https://www.mmamatchups.net"><Glyphicon glyph="fire" />   View All Fighters</MenuItem>
                 </Nav>
                 <Nav pullRight>
                   <MenuItem eventKey={2} href="signout"><Glyphicon glyph="log-out" />   Log Out</MenuItem>
