@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171225114126) do
+ActiveRecord::Schema.define(version: 20180104205803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,10 +32,14 @@ ActiveRecord::Schema.define(version: 20171225114126) do
     t.integer  "fighter_one_id"
     t.integer  "fighter_two_id"
     t.integer  "upvotes"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.string   "division"
     t.string   "has_voted"
+    t.integer  "red_corner_upvotes"
+    t.integer  "blue_corner_upvotes"
+    t.integer  "has_voted_red_corner"
+    t.integer  "has_voted_blue_corner"
   end
 
   create_table "subscriptions", force: :cascade do |t|
@@ -56,19 +60,14 @@ ActiveRecord::Schema.define(version: 20171225114126) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.integer  "votable_id"
-    t.string   "votable_type"
-    t.integer  "voter_id"
-    t.string   "voter_type"
-    t.boolean  "vote_flag"
-    t.string   "vote_scope"
-    t.integer  "vote_weight"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "fight"
+    t.integer  "user"
+    t.string   "upvoted"
+    t.string   "red_corner"
+    t.string   "blue_corner"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
-
-  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
-  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
 
   create_table "widgets", force: :cascade do |t|
     t.string   "name"

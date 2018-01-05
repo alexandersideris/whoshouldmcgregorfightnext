@@ -16,8 +16,8 @@ export default class ShowFight extends React.Component {
     if(this.props.current_user == null){
       alert('You need to sign in to vote mate!    :)');
     }else{
-      //console.log(this.props.current_user.name+ " liked fight "+this.props.fight)
-      var url = "/fights/vote?id="+this.props.fight+'&user_id='+this.props.current_user.id
+      console.log(this.props.current_user.name+ " liked fight "+this.props.fight)
+      var url = "/fights/vote?fight="+this.props.fight+'&user='+this.props.current_user.id+'&upvoted=true'+'&red_corner=red_corner'+'&blue_corner=blue_corner'
       //console.log(url)
       var fight = this.props.fight;
       var ctx = this.props.context
@@ -28,12 +28,65 @@ export default class ShowFight extends React.Component {
 
       axios.get(url)
       .then(function (response) {
-        //alert(response);
+        console.log(response)
         
         if (response.status != 200){
           ctx.setState({
               has_unvoted: fight,
               has_voted: '',
+            });
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+      
+    }
+  }
+
+  vote_for_fighter(corner){
+    var self = this
+
+    if(this.props.current_user == null){
+      alert('You need to sign in to vote mate!    :)');
+    }else{
+      console.log(this.props.current_user.name+ " liked fight "+this.props.fight)
+      //console.log(url)
+      var fight = this.props.fight;
+      var ctx = this.props.context
+      var url=''
+      if(corner=='red'){
+        url = "/fights/vote_for_fighter?fight="+this.props.fight+'&user='+this.props.current_user.id+'&upvoted='+this.props.has_voted+'&red_corner=true'+'&blue_corner=false'
+        ctx.setState({
+          has_voted_red_corner: fight,
+          has_unvoted_red_corner: '',
+          has_voted_blue_corner: '',
+          has_unvoted_blue_corner: '',
+        });
+      }else{
+        url = "/fights/vote_for_fighter?fight="+this.props.fight+'&user='+this.props.current_user.id+'&upvoted='+this.props.has_voted+'&red_corner=false'+'&blue_corner=true'   
+        ctx.setState({
+          has_voted_red_corner: '',
+          has_voted_blue_corner: fight
+        });
+      }
+
+      //ctx.setState({
+        //has_voted: fight,
+        //has_unvoted: '',
+      //});
+
+      axios.get(url)
+      .then(function (response) {
+        console.log(response)
+        
+        if (response.status != 200){
+          ctx.setState({
+              has_unvoted: fight,
+              has_voted: '',
+              has_voted_red_corner: self.props.has_voted_red_corner,
+              has_voted_blue_corner: self.props.has_voted_blue_corner
             });
         }
       })

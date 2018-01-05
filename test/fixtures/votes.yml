@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fight: 1
+  user: 1
+  upvoted: MyString
+  red_corner: MyString
+  blue_corner: MyString
+
+two:
+  fight: 1
+  user: 1
+  upvoted: MyString
+  red_corner: MyString
+  blue_corner: MyString

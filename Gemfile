@@ -50,7 +50,7 @@ gem 'webpacker', '~> 3.0'
 gem "omniauth-google-oauth2", "~> 0.2.1"
 
 #To enable upvoting
-gem 'acts_as_votable', '~> 0.11.1'
+#gem 'acts_as_votable', '~> 0.11.1'
 
 gem 'responders', '~> 2.0'
 

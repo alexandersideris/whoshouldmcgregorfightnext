@@ -7,8 +7,13 @@ class FightsController < ApplicationController
     @fights = Fight.order("upvotes DESC").order("RANDOM()").first(50)
     if current_user != nil
       @fights.each do |fight|
-        if current_user.voted_for? fight
-          fight.has_voted = 'true'
+        v = Vote.where(fight: fight.id, user: current_user.id).first
+        if v!=nil
+          if v.upvoted = 'true'
+            fight.has_voted = 'true'
+          #if v.red_corner = 'wins by ko/tko'
+            #fight.
+          end
         else
           fight.has_voted = 'false'
         end
@@ -51,18 +56,74 @@ class FightsController < ApplicationController
   end
 
   def vote
-    @fight = Fight.find(params[:id])
-    @user = User.find(params[:user_id])
-    @fight.liked_by @user
+    @fight = Fight.find(params[:fight])
+    @user = User.find(params[:user])
+    v = Vote.where(fight: @fight.id, user: params[:user]).first
+    if v==nil
+      Vote.create(fight: params[:fight], user: params[:user], upvoted: params[:upvoted], red_corner: 'false', blue_corner: 'false' )
+    else
+      v.upvoted = 'true'
+      v.save
+    end
+    #@fight.liked_by @user
+    @fight.upvotes = @fight.upvotes + 1
+    @fight.save
+    redirect_to '/'
+  end
+
+  def vote_for_fighter
+    @fight = Fight.find(params[:fight])
+    @user = User.find(params[:user])
+    v = Vote.where(fight: @fight.id, user: params[:user]).first
+    if v==nil
+      Vote.create(fight: params[:fight], user: params[:user], upvoted: params[:upvoted], red_corner: params[:red_corner], blue_corner: params[:blue_corner] )
+    else
+      v.red_corner = params[:red_corner]
+      v.blue_corner = params[:blue_corner]
+      v.save
+    end
+    #@fight.liked_by @user
+    if params[:red_corner] == 'true'
+      @fight.red_corner_upvotes = @fight.red_corner_upvotes + 1
+    elsif params[:red_corner] == 'true'
+    @fight.upvotes = @fight.upvotes + 1
+    @fight.save
+    redirect_to '/'
+  end
+
+  def unvote_for_fighter
+    @fight = Fight.find(params[:fight])
+    @user = User.find(params[:user])
+    v = Vote.where(fight: @fight.id, user: params[:user]).first
+    if v==nil
+      Vote.create(fight: params[:fight], user: params[:user], upvoted: params[:upvoted], red_corner: params[:red_corner], blue_corner: params[:blue_corner] )
+    else
+      v.red_corner = params[:red_corner]
+      v.blue_corner = params[:blue_corner]
+      v.save
+    end
+    #@fight.liked_by @user
+    if params[:red_corner] == 'true'
+      @fight.red_corner_upvotes = @fight.red_corner_upvotes + 1
+    elsif params[:red_corner] == 'true'
     @fight.upvotes = @fight.upvotes + 1
     @fight.save
     redirect_to '/'
   end
 
   def unvote
-    @fight = Fight.find(params[:id])
-    @user = User.find(params[:user_id])
-    @fight.unliked_by @user
+    @fight = Fight.find(params[:fight])
+    @user = User.find(params[:user])
+    v = Vote.where(fight: @fight.id, user: params[:user]).first
+    if v==nil
+      Vote.create(fight: params[:id], user: params[:user_id], upvoted: params[:upvoted], red_corner: params[:red_corner], blue_corner: params[:blue_corner] )
+    else
+      v.upvoted = params[:upvoted]
+      v.red_corner = params[:red_corner]
+      v.blue_corner = params[:blue_corner]
+      v.save
+    end
+    #@fight.unliked_by @user
     @fight.upvotes = @fight.upvotes - 1
     @fight.save
     redirect_to '/'

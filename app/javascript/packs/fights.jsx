@@ -10,7 +10,7 @@ import axios from 'axios'
 class Fights extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {division: 'Popular', the_fighter: '', has_voted: '', has_unvoted: '', superfights: 'false', fights: this.props.fights};
+    this.state = {division: 'Popular', the_fighter: '', has_voted: '', has_unvoted: '', has_voted_red_corner: '', has_unvoted_red_corner: '', has_voted_blue_corner: '', has_unvoted_blue_corner: '', superfights: 'false', fights: this.props.fights};
     this.render = this.render.bind(this);
     this.buyButtonPressed = this.buyButtonPressed.bind(this);
   }
@@ -57,6 +57,11 @@ class Fights extends React.Component {
     }
     var has_voted = this.state.has_voted
     var has_unvoted = this.state.has_unvoted
+    var has_voted_red_corner = this.state.has_voted_red_corner
+    var has_unvoted_red_corner = this.state.has_unvoted_red_corner
+    var has_voted_blue_corner = this.state.has_voted_red_corner
+    var has_unvoted_blue_corner = this.state.has_unvoted_red_corner
+
     var division = this.state.division
     var the_fighter = this.state.the_fighter
     var fights = this.state.fights
@@ -90,6 +95,38 @@ class Fights extends React.Component {
       f.save
       this.setState({has_unvoted: ''});
     }
+
+    if(has_voted_red_corner != ''){
+      var f = fights.find(function(e){ return e.id == has_voted_red_corner; })
+      f.red_corner_upvotes = f.red_corner_upvotes + 1
+      f.has_voted_red_corner = 'true'
+      f.save
+      this.setState({has_unvoted: ''});
+    }
+    if(has_unvoted_red_corner != ''){
+      var f = fights.find(function(e){ return e.id == has_voted_red_corner; })
+      f.red_corner_upvotes = f.red_corner_upvotes + 1
+      f.has_voted_red_corner = 'false'
+      f.save
+      this.setState({has_unvoted: ''});
+    }
+
+    if(has_voted_blue_corner != ''){
+      var f = fights.find(function(e){ return e.id == has_voted_blue_corner; })
+      f.blue_corner_upvotes = f.blue_corner_upvotes + 1
+      f.has_voted_blue_corner = 'true'
+      f.save
+      this.setState({has_unvoted: ''});
+    }
+    if(has_unvoted_blue_corner != ''){
+      var f = fights.find(function(e){ return e.id == has_unvoted_blue_corner; })
+      f.blue_corner_upvotes = f.blue_corner_upvotes - 1
+      f.has_voted_blue_corner = 'false'
+      f.save
+      this.setState({has_unvoted: ''});
+    }
+
+
     var context = this;
 
     //Normal mode
